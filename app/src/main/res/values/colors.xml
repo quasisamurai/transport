@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#3949AB</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="bus_color">#87CEEB</color>
+    <color name="trolley_color">#74C365</color>
+    <color name="tram_color">#DAA520</color>
+    <color name="ufo_color">#FF0000</color>
+
+    <color name="next_in_close_color">#4CAF50</color>
+    <color name="next_in_medium_color">#FFC107</color>
+    <color name="next_in_far_color">#FF5722</color>
+    <color name="next_in_late_color">#ef6c00</color>
+
+    <color name="divider_color">#1f000000</color>
+
+    <color name="change_direction_background_color">#adfff2</color>
+    <color name="direction_a_background_color">#ed8282</color>
+    <color name="direction_b_background_color">#a0aeff</color>
+
+    <color name="empty_route_list_image_color">@android:color/darker_gray</color>
+
+    <color name="timepoint_color_red_enabled">#FF5C5C</color>
+    <color name="timepoint_color_red_disabled">#ffa49d</color>
+    <color name="timepoint_color_green_enabled">#5CCC6B</color>
+    <color name="timepoint_color_green_disabled">#addebd</color>
+    <color name="timepoint_color_blue_enabled">#4c56eb</color>
+    <color name="timepoint_color_blue_disabled">#a6a2eb</color>
+</resources>

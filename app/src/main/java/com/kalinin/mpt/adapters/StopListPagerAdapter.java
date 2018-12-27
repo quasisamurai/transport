@@ -1,0 +1,78 @@
+package com.kalinin.mpt.adapters;
+
+import android.content.Context;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
+
+import com.kalinin.mpt.data.ScheduleUtils;
+import com.kalinin.mpt.data.StopListItem;
+import com.kalinin.mpt.fragments.StopListFragment;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class StopListPagerAdapter extends FragmentPagerAdapter {
+    FragmentManager mFragmentManager;
+    private Context mContext;
+    private List<FragmentHolder> mFragmentHolders;
+    public StopListPagerAdapter(FragmentManager fragmentManager, Context context) {
+        super(fragmentManager);
+        mContext = context;
+        mFragmentManager = fragmentManager;
+
+        reset();
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public int getCount() {
+        return mFragmentHolders.size();
+    }
+
+    @Override
+    public Fragment getItem(int position) {
+        return mFragmentHolders.get(position).fragment;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return mFragmentHolders.get(position).title;
+    }
+
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
+    }
+
+    public void addTab(CharSequence daysMask, List<StopListItem> stopListItems) {
+        CharSequence title = ScheduleUtils.daysMaskToString(mContext, daysMask);
+        Fragment fragment = StopListFragment.newInstance(stopListItems);
+
+        mFragmentHolders.add(new FragmentHolder(title, fragment));
+    }
+
+    public void reset() {
+        if (mFragmentHolders != null) {
+            FragmentTransaction transaction = mFragmentManager.beginTransaction();
+            for (FragmentHolder holder : mFragmentHolders) {
+                transaction.remove(holder.fragment);
+            }
+            transaction.commit();
+            mFragmentManager.executePendingTransactions();
+        }
+
+        mFragmentHolders = new ArrayList<>();
+    }
+
+    private class FragmentHolder {
+        private CharSequence title;
+        private Fragment fragment;
+        FragmentHolder(CharSequence title, Fragment fragment) {
+            this.title = title;
+            this.fragment = fragment;
+        }
+    }
+}

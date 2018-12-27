@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kalinin.mpt">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="com.kalinin.mpt.activities.RouteListActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.kalinin.mpt.activities.AddTransportActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName="com.kalinin.mpt.activities.RouteListActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kalinin.mpt.activities.RouteListActivity" />
+        </activity>
+        <activity
+            android:name="com.kalinin.mpt.activities.ScheduleActivity"
+            android:label=""
+            android:parentActivityName="com.kalinin.mpt.activities.RouteListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kalinin.mpt.activities.RouteListActivity" />
+        </activity>
+        <activity
+            android:name="com.kalinin.mpt.activities.RouteInputActivity"
+            android:label="@string/route_input_activity_title"
+            android:parentActivityName="com.kalinin.mpt.activities.AddTransportActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kalinin.mpt.activities.AddTransportActivity" />
+        </activity>
+
+        <receiver android:name="com.kalinin.mpt.activities.StopScheduleWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.shalgachev.moscowpublictransport.action.TIMEPOINTS_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/stop_schedule_widget_info" />
+        </receiver>
+
+        <activity android:name="com.kalinin.mpt.activities.StopScheduleWidgetConfigureActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="@string/appwidget_single_stop_title">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <service android:name="com.kalinin.mpt.widgets.StopScheduleWidgetRemoteViewsService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"/>
+    </application>
+
+</manifest>
